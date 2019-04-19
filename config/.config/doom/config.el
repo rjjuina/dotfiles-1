@@ -195,6 +195,15 @@ gdb-show-main t)
 (evil-define-key 'normal ensime-mode-map (kbd "gD") #'ensime-edit-definition-other-window)
 (evil-define-key 'normal ensime-mode-map (kbd "C-o") #'ensime-pop-find-definition-stack)
 
+
+(evil-define-key 'normal cider-mode-map (kbd "gd") #'cider-find-var)
+(evil-define-key 'normal cider-mode-map (kbd "C-o") #'cider-pop-back)
+
 (global-auto-revert-mode)
 
 (setq c-syntactic-indentation nil)
+
+ (let ((a 1))                            ; binding (1)
+      (let ((f (lambda () (print a))))
+        (let ((a 2))                        ; binding (2)
+          (funcall f))))
